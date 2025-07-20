@@ -43,10 +43,6 @@ def simulate(params,modes,N_part,N_dim,delta_t,N_t,oversampling):
     x_boundary = length/2
     
     X = np.zeros((N_part,N_t-1,N_dim))
-    P = np.zeros((N_part,N_t-1,N_dim))
-    L = np.zeros((N_part,N_t-1,N_dim))
-    grad = np.zeros((N_part,N_t-1,N_dim))
-    theta = np.zeros((N_part,N_t-1))
     for j in range(0,N_part):
         
         x_prev = np.zeros(N_dim)
@@ -75,13 +71,9 @@ def simulate(params,modes,N_part,N_dim,delta_t,N_t,oversampling):
             
             if(np.mod(t,oversampling)==0):
                 X[j,count_t,:] = x_next
-                P[j,count_t,:] = pol
-                L[j,count_t,:] = L_next
-                grad[j,count_t,:] = rho_grad
-                theta[j,count_t] = theta_next
                 count_t += 1
 
-    return X,P,L,grad,theta
+    return X
 
 def confinement_force(x,n): return -x**(n-1)
 def F_obstacle(x,dim,position_obstacle_in,stiffness,n,N_dim,space=5):

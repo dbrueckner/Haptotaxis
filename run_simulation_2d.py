@@ -40,9 +40,8 @@ mode_hapto = 1
 params = (v_0,D_r,chi,gamma,stiffness,n,length_cell,k_cell,sigma_L,rho0,ell,length,width,C0,lambda_C)
 modes = (mode_hapto)
     
-X,P,L,grad,theta = simulate(params,modes,N_part,N_dim,delta_t,N_t,oversampling)
+X = simulate(params,modes,N_part,N_dim,delta_t,N_t,oversampling)
     
-
 
 import matplotlib.pyplot as plt
 plt.close('all')
@@ -56,8 +55,8 @@ plt.figure()
 
 for j in range(0,N_part):        
     plt.plot(X[j,:,0],X[j,:,1])
-        #data_snip.X[j,:data_snip.N_t[j]],data_snip.time[:data_snip.N_t[j]],color=colors_AH[data_snip.hapto[j]],lw=1,zorder=zorders[data_snip.hapto[j]])
-  
+
+
 plt.xlabel(r'x ($\mu$m)')
 plt.ylabel(r'y ($\mu$m)')
 
@@ -67,3 +66,4 @@ plt.ylim([-width/2,width/2])
 plt.yticks([-width/2,width/2])
 
 plt.tight_layout()
+
